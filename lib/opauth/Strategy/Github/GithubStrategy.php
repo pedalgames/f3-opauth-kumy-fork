@@ -125,7 +125,8 @@ class GitHubStrategy extends OpauthStrategy {
 	 * @return array Parsed JSON results
 	 */
 	private function user($access_token) {
-		$user = $this->serverGet('https://api.github.com/user', array('access_token' => $access_token), null, $headers);
+		$options = array('http' => array('header' => "Authorization: token $access_token"));
+		$user = $this->serverGet('https://api.github.com/user', [], $options, $headers);
 
 		if (!empty($user)) {
 			return $this->recursiveGetObjectVars(json_decode($user));
