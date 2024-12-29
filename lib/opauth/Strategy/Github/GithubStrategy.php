@@ -25,7 +25,7 @@ class GitHubStrategy extends OpauthStrategy {
 	/**
 	 * Optional config keys, without predefining any default values.
 	 */
-	public $optionals = array('redirect_uri', 'scope', 'state');
+	public $optionals = array('redirect_uri', 'scope', 'state', 'prompt');
 	
 	/**
 	 * Optional config keys with respective default values, listed as associative arrays
