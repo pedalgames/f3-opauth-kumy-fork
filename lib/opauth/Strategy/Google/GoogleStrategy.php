@@ -102,7 +102,11 @@ class GoogleStrategy extends OpauthStrategy{
 				$this->mapProfile($userinfo, 'given_name', 'info.first_name');
 				$this->mapProfile($userinfo, 'family_name', 'info.last_name');
 				$this->mapProfile($userinfo, 'picture', 'info.image');
-				
+
+				if (array_key_exists('state', $_GET) && !empty($_GET['state'])) {
+					$this->auth['state'] = $_GET['state'];
+				} 
+
 				$this->callback();
 			}
 			else{

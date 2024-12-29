@@ -92,7 +92,11 @@ class GitHubStrategy extends OpauthStrategy {
 				$this->mapProfile($user, 'email', 'info.email');
 				$this->mapProfile($user, 'location', 'info.location');
 				$this->mapProfile($user, 'url', 'info.urls.github_api');
-				
+
+				if (array_key_exists('state', $_GET) && !empty($_GET['state'])) {
+					$this->auth['state'] = $_GET['state'];
+				} 
+								
 				$this->callback();
 			}
 			else {
