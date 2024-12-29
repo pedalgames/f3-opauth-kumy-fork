@@ -26,8 +26,12 @@ class GoogleStrategy extends OpauthStrategy{
 	
 	/**
 	 * Optional config keys, without predefining any default values.
+	 * https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#redirecting
 	 */
-	public $optionals = array('redirect_uri', 'scope', 'state', 'access_type', 'approval_prompt');
+	public $optionals = array('redirect_uri', 'scope', 'state', 
+		// 'include_granted_scopes', 
+		// 'enable_granular_consent', 
+		'login_hint', 'prompt');
 	
 	/**
 	 * Optional config keys with respective default values, listed as associative arrays
