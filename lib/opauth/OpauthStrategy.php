@@ -426,7 +426,9 @@ class OpauthStrategy {
 			$content = false;
 			$responseHeaders = implode("\r\n", $http_response_header);
 			error_log($e->getMessage());
-			error_log($responseHeaders);
+			error_log('response headers:' . PHP_EOL . $responseHeaders);
+			error_log('url:' . $url);
+			error_log('context:' . PHP_EOL . print_r($options, true));
 		}
 
 		return $content;
