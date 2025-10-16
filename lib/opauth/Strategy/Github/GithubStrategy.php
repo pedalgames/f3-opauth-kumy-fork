@@ -71,7 +71,7 @@ class GitHubStrategy extends OpauthStrategy {
 			$response = $this->serverPost($url, $params, null, $headers);
 			parse_str($response, $results);
 			
-			if (!empty($results) && !empty($results['access_token'])) {
+			if (($response !== false) && !empty($results) && !empty($results['access_token'])) {
 				$user = $this->user($results['access_token']);
 				
 				$this->auth = array(

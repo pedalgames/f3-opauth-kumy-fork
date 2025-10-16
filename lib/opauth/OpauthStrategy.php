@@ -419,8 +419,17 @@ class OpauthStrategy {
 		}
 		$context = stream_context_create($options);
 
-		$content = file_get_contents($url, false, $context);
-		$responseHeaders = implode("\r\n", $http_response_header);
+		try {
+			$content = @file_get_contents($url, false, $context);
+			$responseHeaders = implode("\r\n", $http_response_header);
+		} catch (Exception $e) {
+			$content = false;
+			$responseHeaders = implode("\r\n", $http_response_header);
+			error_log($e->getMessage());
+			error_log('response headers:' . PHP_EOL . $responseHeaders);
+			error_log('url:' . $url);
+			error_log('context:' . PHP_EOL . print_r($options, true));
+		}
 
 		return $content;
 	}
