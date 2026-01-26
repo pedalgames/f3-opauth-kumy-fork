@@ -418,7 +418,10 @@ class OpauthStrategy {
 			$options = array('http' => array('header' => 'User-Agent: opauth'));
 		}
 		$context = stream_context_create($options);
-
+		
+		if (function_exists('http_get_last_response_headers')) {
+			$http_response_header = \http_get_last_response_headers();
+		} 
 		try {
 			$content = @file_get_contents($url, false, $context);
 			$responseHeaders = implode("\r\n", $http_response_header);
